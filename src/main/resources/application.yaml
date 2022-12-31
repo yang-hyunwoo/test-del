@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://containers-us-west-158.railway.app:7379/railway
+    username: postgres
+    password: sf13YZg9xDPZlRBuXSVT
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate.ddl-auto: update
+    open-in-view: false
+    show-sql: true                                # ?? ???
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100 # N+1 ??
+server:
+  port: 8085
+
