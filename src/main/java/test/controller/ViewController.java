@@ -8,6 +8,6 @@ public class ViewController {
 
     @GetMapping("/")
     public String view() {
-        return "index";
+        return "index.html";
     }
 }
