@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.1'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'war'
 }
 
 group = 'test'
@@ -26,7 +27,8 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//	implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // 추가
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
 tasks.named('test') {
