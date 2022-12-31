@@ -1,4 +1,8 @@
 spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
   datasource:
     url: jdbc:postgresql://containers-us-west-158.railway.app:7379/railway
     username: postgres
