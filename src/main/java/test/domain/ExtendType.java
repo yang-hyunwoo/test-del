@@ -26,7 +26,6 @@ public class ExtendType {
     private Users users; // 유저 정보 (ID)
 
     @Setter
-    @NotEmpty(message = "타입")
     @Column(nullable = false , length = 20)
     private String name;        //확장자 이름
 

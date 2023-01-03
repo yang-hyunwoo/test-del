@@ -2,7 +2,6 @@ package test.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,7 +20,6 @@ public class Users {
     private Long id;       //순번
 
     @Setter
-    @NotEmpty(message = "아이디가 없습니다")
     @Column(nullable = false , length = 30)
     private String name;
 

@@ -30,15 +30,15 @@ public class AllController {
      */
     @PostMapping("/login")
     public Response<?> user(@RequestParam String name , HttpServletRequest request) {
-        if(name.isEmpty()){
-            return Response.error("null", "널 값");
-        }
+        Response<String> error = getResponse(name);
+        if (error != null) return error;
         UsersDTO users = allControllerService.users(name.trim());
         session = request.getSession();
         session.setAttribute("userPk",users.getId());
         session.setAttribute("userName",users.getName());
         return Response.success(users);
     }
+
 
     /**
      * 필수 확장자 체크박스 클릭시
@@ -58,9 +58,8 @@ public class AllController {
      */
     @PostMapping("/custom")
     public Response<String> custom(@RequestParam String extendType) {
-        if(extendType.isEmpty()){
-            return Response.error("null", "널 값");
-        }
+        Response<String> error = getStringResponse(extendType);
+        if (error != null) return error;
         long userPk = Long.parseLong(session.getAttribute("userPk").toString());
         String message = allControllerService.customIns(extendType.trim(), userPk);
         if(message.equals("등록 완료")) {
@@ -68,6 +67,13 @@ public class AllController {
         } else {
             return Response.error("null",message);
         }
+    }
+
+    private static Response<String> getStringResponse(String extendType) {
+        if(extendType.isEmpty()){
+            return Response.error("null", "널 값");
+        }
+        return null;
     }
 
     /**
@@ -87,9 +93,8 @@ public class AllController {
      */
     @PostMapping("/custom-full")
     public Response<String> customFull(@RequestParam String extendType) {
-        if(extendType.isEmpty()){
-            return Response.error("null", "널 값");
-        }
+        Response<String> error = getResponse(extendType);
+        if (error != null) return error;
         long userPk = Long.parseLong(session.getAttribute("userPk").toString());
         String message = allControllerService.customFull(extendType.trim(), userPk);
         if(message.equals("등록 완료")) {
@@ -99,4 +104,10 @@ public class AllController {
         }
     }
 
+    private static Response<String> getResponse(String name) {
+        if(name.isEmpty()){
+            return Response.error("null", "널 값입니다.");
+        }
+        return null;
+    }
 }

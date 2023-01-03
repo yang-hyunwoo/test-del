@@ -57,7 +57,7 @@
                     .done(function (data) {
                     })
             } else {
-                alert("아이디 입력");
+                alert("아이디가 없습니다.")
                 $('input:checkbox').prop('checked',false);
                 return ;
             }
@@ -83,7 +83,7 @@
                         }
                     })
             }else {
-                alert("아이디 입력");
+                alert("아이디가 없습니다.");
                 return ;
             }
         });
@@ -108,7 +108,7 @@
                         }
                     })
             }else {
-                alert("아이디 입력");
+                alert("아이디가 없습니다.");
                 return ;
             }
         });
@@ -132,7 +132,7 @@
                         $("#extendCount").html(count);
                     })
             }else {
-                alert("아이디 입력");
+                alert("아이디가 없습니다.");
                 return ;
             }
         });
@@ -150,11 +150,12 @@
             url: "/login",
             data: data,
             method: "POST",
-            dataType: "json"
+            dataType: "json",
+            // contentType: 'application/json'
         })
             .done(function (data){
                 if(data.resultCode=='null'){
-                    alert("공백");
+                    alert(data.result);
                     return ;
                 } else {
                     let extendType = data.result.extendTypes;
