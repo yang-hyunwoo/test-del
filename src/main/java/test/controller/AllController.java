@@ -30,7 +30,7 @@ public class AllController {
      */
     @PostMapping("/login")
     public Response<?> user(@RequestParam String name , HttpServletRequest request) {
-        Response<String> error = getResponse(name);
+        Response<String> error = getResponse(name,"아이디");
         if (error != null) return error;
         UsersDTO users = allControllerService.users(name.trim());
         session = request.getSession();
@@ -58,7 +58,7 @@ public class AllController {
      */
     @PostMapping("/custom")
     public Response<String> custom(@RequestParam String extendType) {
-        Response<String> error = getStringResponse(extendType);
+        Response<String> error = getResponse(extendType,"확장자");
         if (error != null) return error;
         long userPk = Long.parseLong(session.getAttribute("userPk").toString());
         String message = allControllerService.customIns(extendType.trim(), userPk);
@@ -93,7 +93,7 @@ public class AllController {
      */
     @PostMapping("/custom-full")
     public Response<String> customFull(@RequestParam String extendType) {
-        Response<String> error = getResponse(extendType);
+        Response<String> error = getResponse(extendType,"확장자");
         if (error != null) return error;
         long userPk = Long.parseLong(session.getAttribute("userPk").toString());
         String message = allControllerService.customFull(extendType.trim(), userPk);
@@ -104,9 +104,9 @@ public class AllController {
         }
     }
 
-    private static Response<String> getResponse(String name) {
+    private static Response<String> getResponse(String name,String message) {
         if(name.isEmpty()){
-            return Response.error("null", "널 값입니다.");
+            return Response.error("null", message+"가 널 값입니다.");
         }
         return null;
     }
