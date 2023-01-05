@@ -41,7 +41,7 @@ public class ExtendType {
 
     }
 
-    public ExtendType(Users users,
+    private ExtendType(Users users,
                       String name,
                       ExtendTypeEnum type,
                       boolean useYn) {
